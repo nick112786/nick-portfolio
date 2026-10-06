@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
@@ -613,16 +611,4 @@ const obs=new IntersectionObserver(entries=>{
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
 </body>
-</html>'''
-
-path = Path("/mnt/data/index.html")
-path.write_text(html, encoding="utf-8")
-
-# Also make a zip containing just the site file for convenience
-import zipfile
-zip_path = Path("/mnt/data/nick-portfolio-complete.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    z.write(path, arcname="index.html")
-
-print(f"Created {path}")
-print(f"Created {zip_path}")
+</html>
