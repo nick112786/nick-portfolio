@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nick | Product Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      background: #f7f7f5;
+      color: #181818;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .label {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #777;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      margin: 0;
+      line-height: 1;
+    }
+
+    h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      margin-top: 18px;
+      font-weight: 500;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin-top: 32px;
+      font-size: 20px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      background: #181818;
+      color: white;
+    }
+
+    .button.secondary {
+      background: white;
+      color: #181818;
+      border: 1px solid #ddd;
+    }
+
+    .section {
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      margin-bottom: 40px;
+    }
+
+    .section-title p {
+      color: #777;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      min-height: 260px;
+      border: 1px solid #eee;
+    }
+
+    .card h3 {
+      font-size: 26px;
+      margin-top: 35px;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .tag {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .skill {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    footer {
+      padding: 60px 24px;
+      text-align: center;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+
+      .projects,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="label">
+      PRODUCT MANAGER · FINTECH · AI
+    </div>
+
+    <h1>Nick</h1>
+
+    <h2>
+      AI × FinTech × Digital Transformation
+    </h2>
+
+    <div class="intro">
+
+      專注於金融產品規劃、AI 應用與流程數位化，
+      將複雜的業務需求轉化為可執行的數位產品。
+
+    </div>
+
+    <div class="buttons">
+
+      <a href="#projects" class="button">
+        View Projects
+      </a>
+
+      <a href="#skills" class="button secondary">
+        My Skills
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="projects">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <p>SELECTED WORK</p>
+
+      <h2>
+        Projects
+      </h2>
+
+    </div>
+
+
+    <div class="projects">
+
+      <div class="card">
+
+        <div class="tag">
+          AI PRODUCT · FINTECH
+        </div>
+
+        <h3>
+          AI Corporate Account Opening Review
+        </h3>
+
+        <p>
+          將企業開戶文件、內外部資料查詢與人工審查流程，
+          整合為 AI 輔助風險審查平台。
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="tag">
+          DATA · RISK
+        </div>
+
+        <h3>
+          ATM Anomaly Detection
+        </h3>
+
+        <p>
+          透過 ATM 交易行為與異常樣態，
+          建立交易異常偵測與驗證機制。
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="tag">
+          FINANCIAL SYSTEM
+        </div>
+
+        <h3>
+          Electronic Check Platform
+        </h3>
+
+        <p>
+          規劃電子支票分行與總行作業流程、
+          系統功能以及操作流程。
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="tag">
+          PROCESS AUTOMATION
+        </div>
+
+        <h3>
+          ACH Process Automation
+        </h3>
+
+        <p>
+          將人工表單及檔案交換流程重新設計，
+          導入整合表單與系統自動排程。
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section" id="skills">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <p>CAPABILITIES</p>
+
+      <h2>
+        What I Do
+      </h2>
+
+    </div>
+
+
+    <div class="skills">
+
+      <div class="skill">
+        <h3>Product</h3>
+        <p>
+          Requirement Analysis<br>
+          User Flow<br>
+          System Planning
+        </p>
+      </div>
+
+
+      <div class="skill">
+        <h3>AI</h3>
+        <p>
+          LLM<br>
+          RAG<br>
+          AI Workflow
+        </p>
+      </div>
+
+
+      <div class="skill">
+        <h3>FinTech</h3>
+        <p>
+          Banking<br>
+          Payments<br>
+          Risk
+        </p>
+      </div>
+
+
+      <div class="skill">
+        <h3>Execution</h3>
+        <p>
+          Prototype<br>
+          Validation<br>
+          Process Improvement
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  Nick · Product Manager · Portfolio
+
+</footer>
+
+
+</body>
+</html>
