@@ -1,3284 +1,628 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-
-  <!-- =========================================
-       BASIC SETTINGS
-  ========================================== -->
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Nick - Product Manager Portfolio. AI, FinTech, Digital Transformation and Product Design."
-  >
-
-  <title>Nick | Product Manager Portfolio</title>
-
-
-  <!-- =========================================
-       FONT
-  ========================================== -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-
-  <!-- =========================================
-       CSS
-  ========================================== -->
-
-  <style>
-
-    /* =========================================
-       DESIGN SYSTEM
-    ========================================== */
-
-    :root {
-
-      --bg: #ffffff;
-
-      --surface: #f7f8fa;
-
-      --surface-2: #f1f3f5;
-
-      --text: #101114;
-
-      --text-secondary: #5e626b;
-
-      --text-light: #8b9099;
-
-      --border: #e4e6ea;
-
-      --dark: #111214;
-
-      --accent: #3157d5;
-
-      --accent-light: #eef2ff;
-
-      --max-width: 1180px;
-
-      --radius: 18px;
-
-      --radius-small: 10px;
-
-      --transition: 0.25s ease;
-
-    }
-
-
-    /* =========================================
-       RESET
-    ========================================== */
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-
-    body {
-
-      background: var(--bg);
-
-      color: var(--text);
-
-      font-family:
-        "Inter",
-        "Noto Sans TC",
-        "Microsoft JhengHei",
-        sans-serif;
-
-      -webkit-font-smoothing: antialiased;
-
-      line-height: 1.6;
-
-    }
-
-
-    img {
-      max-width: 100%;
-    }
-
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    button {
-      font: inherit;
-    }
-
-
-    ::selection {
-      background: #dce4ff;
-    }
-
-
-    /* =========================================
-       CONTAINER
-    ========================================== */
-
-    .container {
-
-      width: min(
-        calc(100% - 48px),
-        var(--max-width)
-      );
-
-      margin: 0 auto;
-
-    }
-
-
-    /* =========================================
-       NAVIGATION
-    ========================================== */
-
-    .nav {
-
-      position: sticky;
-
-      top: 0;
-
-      z-index: 1000;
-
-      height: 72px;
-
-      background:
-        rgba(255,255,255,0.9);
-
-      backdrop-filter:
-        blur(16px);
-
-      border-bottom:
-        1px solid rgba(228,230,234,0.8);
-
-    }
-
-
-    .nav-inner {
-
-      height: 72px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-    }
-
-
-    .logo {
-
-      font-size: 20px;
-
-      font-weight: 700;
-
-      letter-spacing: -0.4px;
-
-    }
-
-
-    .nav-links {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 30px;
-
-      font-size: 14px;
-
-      color: var(--text-secondary);
-
-    }
-
-
-    .nav-links a {
-
-      transition: var(--transition);
-
-    }
-
-
-    .nav-links a:hover {
-
-      color: var(--text);
-
-    }
-
-
-    .nav-resume {
-
-      padding: 10px 17px;
-
-      color: white !important;
-
-      background: var(--dark);
-
-      border-radius: 8px;
-
-    }
-
-
-    .nav-resume:hover {
-
-      transform: translateY(-1px);
-
-      opacity: 0.9;
-
-    }
-
-
-    /* =========================================
-       HERO
-    ========================================== */
-
-    .hero {
-
-      min-height:
-        calc(100vh - 72px);
-
-      display: flex;
-
-      align-items: center;
-
-      padding:
-        110px 0
-        100px;
-
-    }
-
-
-    .hero-content {
-
-      max-width: 930px;
-
-    }
-
-
-    .hero h1 {
-
-      font-size:
-        clamp(
-          58px,
-          9vw,
-          112px
-        );
-
-      line-height: 0.95;
-
-      letter-spacing: -5px;
-
-      font-weight: 600;
-
-    }
-
-
-    .hero-role {
-
-      margin-top: 32px;
-
-      font-size:
-        clamp(
-          27px,
-          4vw,
-          46px
-        );
-
-      line-height: 1.2;
-
-      font-weight: 500;
-
-      letter-spacing: -1.5px;
-
-    }
-
-
-    .hero-role span {
-
-      color:
-        var(--text-light);
-
-    }
-
-
-    .hero-description {
-
-      max-width: 720px;
-
-      margin-top: 34px;
-
-      color:
-        var(--text-secondary);
-
-      font-size: 19px;
-
-      line-height: 1.8;
-
-    }
-
-
-    .hero-actions {
-
-      margin-top: 42px;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      flex-wrap: wrap;
-
-    }
-
-
-    .btn {
-
-      min-height: 48px;
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 0 22px;
-
-      border-radius: 9px;
-
-      font-size: 14px;
-
-      font-weight: 500;
-
-      border:
-        1px solid transparent;
-
-      transition:
-        var(--transition);
-
-    }
-
-
-    .btn-primary {
-
-      background:
-        var(--dark);
-
-      color:
-        white;
-
-    }
-
-
-    .btn-primary:hover {
-
-      transform:
-        translateY(-2px);
-
-      box-shadow:
-        0 8px 24px
-        rgba(0,0,0,0.12);
-
-    }
-
-
-    .btn-secondary {
-
-      background:
-        white;
-
-      border-color:
-        var(--border);
-
-    }
-
-
-    .btn-secondary:hover {
-
-      background:
-        var(--surface);
-
-    }
-
-
-    .hero-meta {
-
-      margin-top: 72px;
-
-      display: flex;
-
-      gap: 44px;
-
-      flex-wrap: wrap;
-
-    }
-
-
-    .hero-meta-item {
-
-      font-size: 13px;
-
-      color:
-        var(--text-light);
-
-    }
-
-
-    .hero-meta-item strong {
-
-      display: block;
-
-      margin-top: 5px;
-
-      font-size: 14px;
-
-      font-weight: 500;
-
-      color:
-        var(--text);
-
-    }
-
-
-
-    /* =========================================
-       SECTION
-    ========================================== */
-
-    section {
-
-      padding: 120px 0;
-
-    }
-
-
-    .section-header {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr 1.6fr;
-
-      gap: 70px;
-
-      margin-bottom: 65px;
-
-      align-items: start;
-
-    }
-
-
-    .section-number {
-
-      color:
-        var(--text-light);
-
-      font-size: 13px;
-
-      letter-spacing: 1px;
-
-    }
-
-
-    .section-header h2 {
-
-      font-size:
-        clamp(
-          34px,
-          4vw,
-          52px
-        );
-
-      line-height: 1.15;
-
-      letter-spacing: -2px;
-
-      font-weight: 600;
-
-    }
-
-
-    .section-header p {
-
-      margin-top: 18px;
-
-      max-width: 680px;
-
-      color:
-        var(--text-secondary);
-
-      font-size: 16px;
-
-      line-height: 1.8;
-
-    }
-
-
-
-    /* =========================================
-       PROJECTS
-    ========================================== */
-
-    #projects {
-
-      background:
-        var(--surface);
-
-    }
-
-
-    .projects {
-
-      display: grid;
-
-      gap: 24px;
-
-    }
-
-
-    .project {
-
-      background: white;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        var(--radius);
-
-      overflow: hidden;
-
-      transition:
-        var(--transition);
-
-    }
-
-
-    .project:hover {
-
-      transform:
-        translateY(-4px);
-
-      box-shadow:
-        0 20px 50px
-        rgba(20,30,50,0.08);
-
-    }
-
-
-    .project-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        1.15fr 0.85fr;
-
-      min-height: 440px;
-
-    }
-
-
-    .project-content {
-
-      padding: 52px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: space-between;
-
-    }
-
-
-    .project-index {
-
-      font-size: 12px;
-
-      color:
-        var(--text-light);
-
-      letter-spacing: 1px;
-
-    }
-
-
-    .project h3 {
-
-      margin-top: 22px;
-
-      font-size:
-        clamp(
-          27px,
-          3vw,
-          38px
-        );
-
-      line-height: 1.2;
-
-      letter-spacing: -1px;
-
-      font-weight: 600;
-
-    }
-
-
-    .project-description {
-
-      margin-top: 22px;
-
-      max-width: 590px;
-
-      color:
-        var(--text-secondary);
-
-      font-size: 16px;
-
-      line-height: 1.8;
-
-    }
-
-
-    .tags {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 8px;
-
-      margin-top: 30px;
-
-    }
-
-
-    .tag {
-
-      padding:
-        7px 11px;
-
-      background:
-        var(--surface);
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        7px;
-
-      font-size:
-        12px;
-
-      color:
-        var(--text-secondary);
-
-    }
-
-
-    .project-link {
-
-      margin-top: 38px;
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      font-size:
-        14px;
-
-      font-weight: 500;
-
-    }
-
-
-    .project-link span {
-
-      transition:
-        var(--transition);
-
-    }
-
-
-    .project:hover
-    .project-link span {
-
-      transform:
-        translateX(5px);
-
-    }
-
-
-
-    /* =========================================
-       PROJECT VISUALS
-    ========================================== */
-
-    .project-visual {
-
-      min-height: 440px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 36px;
-
-    }
-
-
-    .visual-ai {
-
-      background:
-        #eef2ff;
-
-    }
-
-
-    .visual-atm {
-
-      background:
-        #edf7f3;
-
-    }
-
-
-    .visual-check {
-
-      background:
-        #f5f1ea;
-
-    }
-
-
-    .visual-ach {
-
-      background:
-        #f2f0f7;
-
-    }
-
-
-    /* Fake product UI */
-
-    .mock-window {
-
-      width: 100%;
-
-      max-width: 390px;
-
-      background:
-        rgba(255,255,255,.94);
-
-      border-radius:
-        14px;
-
-      border:
-        1px solid
-        rgba(0,0,0,.07);
-
-      box-shadow:
-        0 22px 55px
-        rgba(20,30,50,.12);
-
-      overflow: hidden;
-
-    }
-
-
-    .mock-top {
-
-      height: 42px;
-
-      display: flex;
-
-      gap: 6px;
-
-      align-items: center;
-
-      padding:
-        0 14px;
-
-      border-bottom:
-        1px solid
-        var(--border);
-
-    }
-
-
-    .mock-dot {
-
-      width: 7px;
-
-      height: 7px;
-
-      border-radius:
-        50%;
-
-      background:
-        #d7d9dd;
-
-    }
-
-
-    .mock-body {
-
-      padding:
-        22px;
-
-    }
-
-
-    .mock-title {
-
-      width:
-        48%;
-
-      height:
-        12px;
-
-      border-radius:
-        4px;
-
-      background:
-        #202225;
-
-    }
-
-
-    .mock-line {
-
-      margin-top:
-        10px;
-
-      height:
-        7px;
-
-      border-radius:
-        4px;
-
-      background:
-        #e3e5e8;
-
-    }
-
-
-    .mock-line.short {
-
-      width:
-        65%;
-
-    }
-
-
-    .mock-boxes {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap:
-        8px;
-
-      margin-top:
-        22px;
-
-    }
-
-
-    .mock-box {
-
-      height:
-        63px;
-
-      border-radius:
-        8px;
-
-      background:
-        #f4f5f6;
-
-      border:
-        1px solid
-        #eaebed;
-
-    }
-
-
-    .mock-risk {
-
-      margin-top:
-        18px;
-
-      padding:
-        14px;
-
-      border-radius:
-        9px;
-
-      background:
-        #f4f6fc;
-
-    }
-
-
-    .mock-risk-title {
-
-      width:
-        35%;
-
-      height:
-        8px;
-
-      background:
-        #3157d5;
-
-      opacity:
-        .6;
-
-      border-radius:
-        4px;
-
-      margin-bottom:
-        10px;
-
-    }
-
-
-
-    /* =========================================
-       METRICS
-    ========================================== */
-
-    .metrics {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      border-top:
-        1px solid
-        var(--border);
-
-    }
-
-
-    .metric {
-
-      padding:
-        30px 36px;
-
-      border-right:
-        1px solid
-        var(--border);
-
-    }
-
-
-    .metric:last-child {
-
-      border-right: none;
-
-    }
-
-
-    .metric-value {
-
-      font-size: 32px;
-
-      font-weight: 600;
-
-      letter-spacing: -1px;
-
-    }
-
-
-    .metric-label {
-
-      margin-top: 6px;
-
-      color:
-        var(--text-light);
-
-      font-size: 12px;
-
-      line-height: 1.5;
-
-    }
-
-
-
-    /* =========================================
-       LABS
-    ========================================== */
-
-    .labs-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 20px;
-
-    }
-
-
-    .lab {
-
-      min-height: 275px;
-
-      padding: 30px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        var(--radius);
-
-      transition:
-        var(--transition);
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: space-between;
-
-    }
-
-
-    .lab:hover {
-
-      background:
-        var(--surface);
-
-      transform:
-        translateY(-3px);
-
-    }
-
-
-    .lab-number {
-
-      color:
-        var(--text-light);
-
-      font-size: 12px;
-
-    }
-
-
-    .lab h3 {
-
-      font-size: 23px;
-
-      line-height: 1.3;
-
-      letter-spacing: -.5px;
-
-    }
-
-
-    .lab p {
-
-      margin-top: 13px;
-
-      color:
-        var(--text-secondary);
-
-      font-size: 14px;
-
-      line-height: 1.7;
-
-    }
-
-
-
-    /* =========================================
-       CAPABILITIES
-    ========================================== */
-
-    #capabilities {
-
-      background:
-        var(--dark);
-
-      color: white;
-
-    }
-
-
-    #capabilities
-    .section-number {
-
-      color:
-        #81838a;
-
-    }
-
-
-    #capabilities
-    .section-header p {
-
-      color:
-        #a7a9ae;
-
-    }
-
-
-    .capabilities-list {
-
-      border-top:
-        1px solid
-        #303237;
-
-    }
-
-
-    .capability {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        110px
-        1fr
-        1.4fr;
-
-      gap:
-        30px;
-
-      align-items:
-        center;
-
-      min-height:
-        116px;
-
-      border-bottom:
-        1px solid
-        #303237;
-
-    }
-
-
-    .capability-number {
-
-      color:
-        #777a80;
-
-      font-size:
-        12px;
-
-    }
-
-
-    .capability h3 {
-
-      font-size:
-        22px;
-
-      font-weight:
-        500;
-
-    }
-
-
-    .capability p {
-
-      color:
-        #a8aaaf;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.7;
-
-    }
-
-
-
-    /* =========================================
-       ABOUT
-    ========================================== */
-
-    .about-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        .85fr
-        1.15fr;
-
-      gap:
-        100px;
-
-    }
-
-
-    .about-title {
-
-      font-size:
-        clamp(
-          38px,
-          5vw,
-          62px
-        );
-
-      line-height:
-        1.08;
-
-      letter-spacing:
-        -2.5px;
-
-      font-weight:
-        600;
-
-    }
-
-
-    .about-content {
-
-      color:
-        var(--text-secondary);
-
-      font-size:
-        17px;
-
-      line-height:
-        1.9;
-
-    }
-
-
-    .about-content p
-    + p {
-
-      margin-top:
-        22px;
-
-    }
-
-
-    .about-focus {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(2,1fr);
-
-      gap:
-        12px;
-
-      margin-top:
-        35px;
-
-    }
-
-
-    .focus-item {
-
-      padding:
-        18px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        10px;
-
-      color:
-        var(--text);
-
-      font-size:
-        13px;
-
-    }
-
-
-
-    /* =========================================
-       CTA
-    ========================================== */
-
-    .cta {
-
-      padding:
-        130px 0;
-
-      background:
-        var(--surface);
-
-    }
-
-
-    .cta-inner {
-
-      max-width:
-        850px;
-
-    }
-
-
-    .cta h2 {
-
-      font-size:
-        clamp(
-          40px,
-          6vw,
-          72px
-        );
-
-      line-height:
-        1.05;
-
-      letter-spacing:
-        -3px;
-
-      font-weight:
-        600;
-
-    }
-
-
-    .cta p {
-
-      margin-top:
-        25px;
-
-      color:
-        var(--text-secondary);
-
-      font-size:
-        17px;
-
-      line-height:
-        1.8;
-
-    }
-
-
-    .cta-actions {
-
-      margin-top:
-        35px;
-
-      display:
-        flex;
-
-      gap:
-        12px;
-
-      flex-wrap:
-        wrap;
-
-    }
-
-
-
-    /* =========================================
-       FOOTER
-    ========================================== */
-
-    footer {
-
-      padding:
-        35px 0;
-
-      border-top:
-        1px solid
-        var(--border);
-
-    }
-
-
-    .footer-inner {
-
-      display:
-        flex;
-
-      justify-content:
-        space-between;
-
-      align-items:
-        center;
-
-      gap:
-        20px;
-
-      color:
-        var(--text-light);
-
-      font-size:
-        12px;
-
-    }
-
-
-    .footer-links {
-
-      display:
-        flex;
-
-      gap:
-        22px;
-
-    }
-
-
-    .footer-links a:hover {
-
-      color:
-        var(--text);
-
-    }
-
-
-
-    /* =========================================
-       ANIMATION
-    ========================================== */
-
-    .reveal {
-
-      opacity:
-        0;
-
-      transform:
-        translateY(22px);
-
-      transition:
-        opacity .65s ease,
-        transform .65s ease;
-
-    }
-
-
-    .reveal.visible {
-
-      opacity:
-        1;
-
-      transform:
-        translateY(0);
-
-    }
-
-
-
-    /* =========================================
-       TABLET
-    ========================================== */
-
-    @media
-    (max-width: 900px) {
-
-      .nav-links a:not(.nav-resume) {
-
-        display: none;
-
-      }
-
-
-      .section-header {
-
-        grid-template-columns:
-          1fr;
-
-        gap:
-          20px;
-
-      }
-
-
-      .project-grid {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .project-visual {
-
-        min-height:
-          340px;
-
-      }
-
-
-      .labs-grid {
-
-        grid-template-columns:
-          1fr 1fr;
-
-      }
-
-
-      .capability {
-
-        grid-template-columns:
-          60px 1fr;
-
-        padding:
-          25px 0;
-
-      }
-
-
-      .capability p {
-
-        grid-column:
-          2;
-
-      }
-
-
-      .about-grid {
-
-        grid-template-columns:
-          1fr;
-
-        gap:
-          45px;
-
-      }
-
-    }
-
-
-
-    /* =========================================
-       MOBILE
-    ========================================== */
-
-    @media
-    (max-width: 620px) {
-
-      .container {
-
-        width:
-          min(
-            calc(100% - 34px),
-            var(--max-width)
-          );
-
-      }
-
-
-      .nav {
-
-        height:
-          64px;
-
-      }
-
-
-      .nav-inner {
-
-        height:
-          64px;
-
-      }
-
-
-      .nav-resume {
-
-        padding:
-          8px 13px;
-
-      }
-
-
-      .hero {
-
-        min-height:
-          auto;
-
-        padding:
-          90px 0
-          80px;
-
-      }
-
-
-      .hero h1 {
-
-        letter-spacing:
-          -3px;
-
-      }
-
-
-      .hero-role {
-
-        margin-top:
-          24px;
-
-      }
-
-
-      .hero-description {
-
-        font-size:
-          16px;
-
-      }
-
-
-      .hero-meta {
-
-        gap:
-          25px;
-
-        margin-top:
-          55px;
-
-      }
-
-
-      section {
-
-        padding:
-          90px 0;
-
-      }
-
-
-      .project-content {
-
-        padding:
-          30px 25px;
-
-      }
-
-
-      .project-visual {
-
-        min-height:
-          290px;
-
-        padding:
-          25px;
-
-      }
-
-
-      .metrics {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .metric {
-
-        border-right:
-          none;
-
-        border-bottom:
-          1px solid
-          var(--border);
-
-      }
-
-
-      .metric:last-child {
-
-        border-bottom:
-          none;
-
-      }
-
-
-      .labs-grid {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .capability {
-
-        grid-template-columns:
-          45px 1fr;
-
-      }
-
-
-      .about-focus {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .footer-inner {
-
-        flex-direction:
-          column;
-
-        align-items:
-          flex-start;
-
-      }
-
-    }
-
-
-
-    /* =========================================
-       REDUCED MOTION
-    ========================================== */
-
-    @media
-    (prefers-reduced-motion: reduce) {
-
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        transition: none !important;
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Nick — Product Manager Portfolio | AI × FinTech × Digital Transformation" />
+<title>Nick | Product Manager Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#ffffff; --surface:#f7f8fa; --surface2:#eef1f5;
+  --text:#111318; --muted:#60656f; --soft:#8d929a;
+  --border:#e3e6ea; --dark:#111318; --accent:#3157d5;
+  --green:#2f7d64; --sand:#8a6f4c; --purple:#6b5aa6;
+  --max:1180px; --radius:18px; --radius-sm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Inter","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  color:var(--text); background:var(--bg); line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.container{width:min(calc(100% - 48px),var(--max));margin:auto}
+.nav{
+  position:sticky; top:0; z-index:1000; height:72px;
+  background:rgba(255,255,255,.92); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(227,230,234,.85)
+}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:700;letter-spacing:-.5px}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--dark);color:#fff!important;padding:10px 16px;border-radius:8px}
+.hero{
+  min-height:calc(100vh - 72px);display:flex;align-items:center;
+  padding:110px 0 90px
+}
+.hero h1{font-size:clamp(64px,10vw,118px);line-height:.92;letter-spacing:-5px;font-weight:600}
+.hero-role{margin-top:28px;font-size:clamp(28px,4vw,46px);line-height:1.18;letter-spacing:-1.6px}
+.hero-role span{color:var(--soft)}
+.hero-copy{max-width:760px;margin-top:30px;color:var(--muted);font-size:18px;line-height:1.85}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:38px}
+.btn{
+  min-height:48px;padding:0 22px;border-radius:9px;border:1px solid transparent;
+  display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;cursor:pointer
+}
+.btn.primary{background:var(--dark);color:#fff}
+.btn.secondary{border-color:var(--border);background:#fff}
+.hero-meta{margin-top:64px;display:flex;gap:48px;flex-wrap:wrap}
+.meta{font-size:12px;color:var(--soft)}
+.meta strong{display:block;margin-top:4px;font-size:14px;color:var(--text);font-weight:500}
+
+section{padding:110px 0}
+.section-head{display:grid;grid-template-columns:.65fr 1.6fr;gap:60px;margin-bottom:58px}
+.section-no{font-size:12px;color:var(--soft);letter-spacing:1px}
+.section-head h2{font-size:clamp(34px,4vw,52px);line-height:1.12;letter-spacing:-2px}
+.section-head p{margin-top:16px;max-width:700px;color:var(--muted);font-size:16px}
+
+#work{background:var(--surface)}
+.projects{display:grid;gap:22px}
+.project{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  transition:.25s ease
+}
+.project:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(20,30,50,.08)}
+.project-grid{display:grid;grid-template-columns:1.12fr .88fr;min-height:410px}
+.project-content{padding:46px;display:flex;flex-direction:column;justify-content:space-between}
+.eyebrow{font-size:12px;color:var(--soft);letter-spacing:1px}
+.project h3{font-size:clamp(26px,3vw,38px);line-height:1.18;letter-spacing:-1.1px;margin-top:18px}
+.project p{margin-top:18px;color:var(--muted);font-size:15.5px;line-height:1.8;max-width:620px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
+.tag{font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:7px 10px;border-radius:7px}
+.linkbtn{margin-top:30px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font-size:14px;font-weight:600}
+.linkbtn span{display:inline-block;margin-left:7px;transition:.2s}
+.project:hover .linkbtn span{transform:translateX(5px)}
+
+.visual{min-height:410px;padding:34px;display:flex;align-items:center;justify-content:center}
+.visual.blue{background:#eef2ff}.visual.green{background:#edf7f3}.visual.sand{background:#f6f1e8}.visual.purple{background:#f2eff8}
+.visual.gray{background:#f0f2f5}.visual.cyan{background:#edf6f7}.visual.red{background:#f9eeee}.visual.gold{background:#f7f2e8}
+
+.mock{width:100%;max-width:390px;background:rgba(255,255,255,.96);border:1px solid rgba(0,0,0,.08);border-radius:14px;box-shadow:0 22px 55px rgba(20,30,50,.12);overflow:hidden}
+.mock-top{height:40px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 13px}
+.dot{width:7px;height:7px;border-radius:50%;background:#d5d8dd}
+.mock-body{padding:22px}
+.bar{height:9px;border-radius:4px;background:#dfe3e8;margin-top:9px}.bar.dark{background:#23262c;width:48%;height:12px}.bar.short{width:62%}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.stat{height:62px;border:1px solid #e8eaed;background:#f6f7f8;border-radius:8px}
+.panel{margin-top:16px;padding:14px;background:#f3f5fb;border-radius:9px}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.node{background:#fff;border:1px solid rgba(0,0,0,.12);padding:12px 14px;border-radius:9px;font-size:12px}
+.arrow{color:#9aa0a8}
+
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.metric{padding:28px 32px;border-right:1px solid var(--border)}
+.metric:last-child{border-right:0}
+.metric strong{font-size:30px;letter-spacing:-1px}
+.metric span{display:block;margin-top:4px;color:var(--soft);font-size:12px}
+
+#labs .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{border:1px solid var(--border);border-radius:var(--radius);padding:26px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between}
+.card h3{font-size:21px;line-height:1.3}
+.card p{margin-top:12px;color:var(--muted);font-size:14px}
+.card small{color:var(--soft)}
+
+#skills{background:var(--dark);color:#fff}
+#skills .section-no{color:#777c85}
+#skills .section-head p{color:#a7abb3}
+.skillrow{display:grid;grid-template-columns:100px 1fr 1.4fr;gap:26px;align-items:center;min-height:108px;border-top:1px solid #30343a}
+.skillrow:last-child{border-bottom:1px solid #30343a}
+.skillrow .num{font-size:12px;color:#777c85}
+.skillrow h3{font-size:21px;font-weight:500}
+.skillrow p{font-size:14px;color:#a7abb3}
+
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px}
+.about h2{font-size:clamp(40px,5vw,62px);line-height:1.08;letter-spacing:-2.5px}
+.about .copy{font-size:17px;color:var(--muted);line-height:1.9}
+.about .copy p+p{margin-top:18px}
+.focus{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px}
+.focus div{border:1px solid var(--border);padding:16px;border-radius:10px;font-size:13px;color:var(--text)}
+
+.cta{background:var(--surface)}
+.cta h2{font-size:clamp(42px,6vw,72px);line-height:1.04;letter-spacing:-3px}
+.cta p{margin-top:20px;color:var(--muted);font-size:17px;max-width:700px}
+
+footer{padding:32px 0;border-top:1px solid var(--border);font-size:12px;color:var(--soft)}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* Modal case study */
+.modal{
+  position:fixed; inset:0; z-index:3000; background:rgba(14,16,20,.6);
+  display:none; align-items:center; justify-content:center; padding:24px;
+}
+.modal.open{display:flex}
+.modal-shell{
+  width:min(1100px,100%); max-height:92vh; overflow:auto;
+  background:#fff; border-radius:20px; box-shadow:0 30px 90px rgba(0,0,0,.25)
+}
+.modal-head{
+  position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;z-index:2
+}
+.modal-title{font-weight:600;font-size:15px}
+.close{
+  border:1px solid var(--border);background:#fff;border-radius:8px;width:38px;height:38px;cursor:pointer;font-size:20px
+}
+.modal-body{padding:46px}
+.case-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:start;padding-bottom:42px;border-bottom:1px solid var(--border)}
+.case-hero h2{font-size:clamp(38px,5vw,62px);line-height:1.05;letter-spacing:-2.5px}
+.case-hero p{margin-top:20px;color:var(--muted);font-size:16px}
+.case-meta{display:grid;gap:12px}
+.case-meta div{border-top:1px solid var(--border);padding-top:11px}
+.case-meta span{display:block;font-size:11px;color:var(--soft);text-transform:uppercase;letter-spacing:.7px}
+.case-meta strong{display:block;margin-top:4px;font-size:14px}
+.case-section{padding:42px 0;border-bottom:1px solid var(--border)}
+.case-section h3{font-size:26px;letter-spacing:-.8px;margin-bottom:18px}
+.case-section p{color:var(--muted);font-size:15.5px;line-height:1.85;max-width:850px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.case-box{border:1px solid var(--border);border-radius:14px;padding:22px;background:#fff}
+.case-box h4{font-size:15px;margin-bottom:10px}
+.case-box ul{padding-left:18px;color:var(--muted);font-size:14px;line-height:1.8}
+.arch{margin-top:22px;padding:26px;border-radius:14px;background:var(--surface);overflow:auto}
+.arch-row{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+.arch-node{padding:12px 16px;background:#fff;border:1px solid var(--border);border-radius:9px;font-size:13px}
+.note{margin-top:18px;padding:16px 18px;background:#f7f8fb;border-left:3px solid var(--accent);color:var(--muted);font-size:14px;border-radius:0 8px 8px 0}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.kpi div{border:1px solid var(--border);border-radius:12px;padding:20px}
+.kpi strong{display:block;font-size:26px}.kpi span{display:block;margin-top:4px;color:var(--soft);font-size:12px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:.6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:950px){
+  .nav-links a:not(.nav-cta){display:none}
+  .section-head,.project-grid,.about,.case-hero{grid-template-columns:1fr}
+  #labs .cards{grid-template-columns:repeat(2,1fr)}
+  .skillrow{grid-template-columns:60px 1fr}.skillrow p{grid-column:2}
+}
+@media(max-width:640px){
+  .container{width:min(calc(100% - 32px),var(--max))}
+  .hero{padding:82px 0 70px}.hero h1{letter-spacing:-3px}
+  section{padding:82px 0}
+  .project-content{padding:28px 24px}.visual{min-height:300px;padding:24px}
+  .metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--border)}
+  #labs .cards{grid-template-columns:1fr}
+  .skillrow{grid-template-columns:42px 1fr}
+  .focus,.two-col,.kpi{grid-template-columns:1fr}
+  .modal{padding:0}.modal-shell{max-height:100vh;height:100%;border-radius:0}.modal-body{padding:28px 20px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 
-
-
 <body>
-
-
-<!-- =========================================
-     NAVIGATION
-========================================== -->
-
 <nav class="nav">
-
   <div class="container nav-inner">
-
-    <a href="#" class="logo">
-      Nick.
-    </a>
-
-
+    <a href="#" class="logo">Nick.</a>
     <div class="nav-links">
-
-      <a href="#projects">
-        Projects
-      </a>
-
-      <a href="#capabilities">
-        Skills
-      </a>
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
-
-      <!--
-      之後有 resume.pdf 後，
-      把 href="#" 改成：
-      href="resume.pdf"
-      -->
-
-      <a
-        href="#"
-        class="nav-resume"
-      >
-        Resume
-      </a>
-
+      <a href="#work">Projects</a>
+      <a href="#labs">Labs</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Let's Connect</a>
     </div>
-
   </div>
-
 </nav>
 
-
-
-<!-- =========================================
-     HERO
-========================================== -->
-
 <header class="hero">
-
   <div class="container">
-
-    <div class="hero-content">
-
-      <h1>
-        Nick
-      </h1>
-
-
-      <div class="hero-role">
-
-        Product Manager
-
-        <span>
-          focused on AI,
-          FinTech & digital products.
-        </span>
-
-      </div>
-
-
-      <p class="hero-description">
-
-        我專注於金融產品規劃、AI 應用與流程數位化，
-        將複雜的業務需求、作業流程與風險規則，
-        轉化為可落地的產品設計與系統解決方案。
-
-      </p>
-
-
-      <div class="hero-actions">
-
-        <a
-          href="#projects"
-          class="btn btn-primary"
-        >
-          View Projects
-        </a>
-
-
-        <a
-          href="#about"
-          class="btn btn-secondary"
-        >
-          About Me
-        </a>
-
-      </div>
-
-
-      <div class="hero-meta">
-
-        <div class="hero-meta-item">
-
-          Focus
-
-          <strong>
-            Product & AI
-          </strong>
-
-        </div>
-
-
-        <div class="hero-meta-item">
-
-          Domain
-
-          <strong>
-            Financial Services
-          </strong>
-
-        </div>
-
-
-        <div class="hero-meta-item">
-
-          Strength
-
-          <strong>
-            Workflow → Product
-          </strong>
-
-        </div>
-
-      </div>
-
+    <h1>Nick</h1>
+    <div class="hero-role">
+      Product Manager <span>focused on AI, FinTech & digital transformation.</span>
     </div>
-
+    <p class="hero-copy">
+      我專注於金融產品規劃、AI 應用、流程數位化與系統需求分析，
+      將複雜業務流程、風險規則與使用者需求，轉化為可執行的產品方案、Prototype 與驗證機制。
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#work">View Projects</a>
+      <a class="btn secondary" href="#about">About Me</a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta">Focus<strong>Product × AI</strong></div>
+      <div class="meta">Domain<strong>Financial Services</strong></div>
+      <div class="meta">Strength<strong>Workflow → Product</strong></div>
+      <div class="meta">Method<strong>Problem → Prototype → Validation</strong></div>
+    </div>
   </div>
-
 </header>
 
-
-
-<!-- =========================================
-     PROJECTS
-========================================== -->
-
-<section id="projects">
-
+<section id="work">
   <div class="container">
-
-
-    <div class="section-header reveal">
-
-      <div class="section-number">
-
-        01 / Selected Work
-
-      </div>
-
-
+    <div class="section-head reveal">
+      <div class="section-no">01 / Selected Work</div>
       <div>
-
-        <h2>
-
-          Turning complex
-          workflows into products.
-
-        </h2>
-
-        <p>
-
-          從金融業務流程、AI 應用、資料驗證到系統規劃，
-          以下專案呈現我如何定義問題、設計流程並將需求轉化為產品。
-
-        </p>
-
+        <h2>Selected product & transformation projects.</h2>
+        <p>以下專案以去識別化方式呈現，重點放在我如何定義問題、設計流程、規劃系統、導入 AI，以及建立可驗證的解決方案。</p>
       </div>
-
     </div>
-
-
 
     <div class="projects">
-
-
-      <!-- =====================================
-           PROJECT 01
-      ====================================== -->
-
-      <article
-        class="project reveal"
-        id="ai-account"
-      >
-
+      <article class="project reveal">
         <div class="project-grid">
-
-
           <div class="project-content">
-
             <div>
-
-              <div class="project-index">
-
-                CASE STUDY 01
-
-              </div>
-
-
-              <h3>
-
-                AI-Assisted
-                Corporate Account
-                Opening Review
-
-              </h3>
-
-
-              <p class="project-description">
-
-                將企業開戶文件、內外部資料查詢與人工審查流程整合，
-                由系統先完成資料蒐集與 AI 重點彙整，
-                協助分行與總行進行風險檢視與案件判斷。
-
-              </p>
-
-
-              <div class="tags">
-
-                <span class="tag">
-                  AI Product
-                </span>
-
-                <span class="tag">
-                  FinTech
-                </span>
-
-                <span class="tag">
-                  Workflow Design
-                </span>
-
-                <span class="tag">
-                  Risk Review
-                </span>
-
-              </div>
-
+              <div class="eyebrow">CASE STUDY 01</div>
+              <h3>AI-Assisted Corporate Account Opening Review</h3>
+              <p>將企業開戶文件、內外部查詢、風險樣態與人工審查流程整合為 AI 輔助審查平台，讓分行與總行可以在同一案件脈絡下完成資料確認與決策。</p>
+              <div class="tags"><span class="tag">AI Product</span><span class="tag">FinTech</span><span class="tag">Workflow Design</span><span class="tag">Human-in-the-loop</span></div>
             </div>
-
-
-            <a
-              href="#ai-account-detail"
-              class="project-link"
-            >
-
-              View overview
-
-              <span>
-                →
-              </span>
-
-            </a>
-
+            <button class="linkbtn" data-case="account">View full case study <span>→</span></button>
           </div>
-
-
-
-          <div
-            class="
-              project-visual
-              visual-ai
-            "
-          >
-
-            <div class="mock-window">
-
-              <div class="mock-top">
-
-                <div class="mock-dot"></div>
-
-                <div class="mock-dot"></div>
-
-                <div class="mock-dot"></div>
-
-              </div>
-
-
+          <div class="visual blue">
+            <div class="mock">
+              <div class="mock-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="mock-body">
-
-                <div class="mock-title"></div>
-
-                <div class="mock-line"></div>
-
-                <div
-                  class="
-                    mock-line
-                    short
-                  "
-                ></div>
-
-
-                <div class="mock-boxes">
-
-                  <div class="mock-box"></div>
-
-                  <div class="mock-box"></div>
-
-                  <div class="mock-box"></div>
-
-                </div>
-
-
-                <div class="mock-risk">
-
-                  <div
-                    class="
-                      mock-risk-title
-                    "
-                  ></div>
-
-                  <div class="mock-line"></div>
-
-                  <div
-                    class="
-                      mock-line
-                      short
-                    "
-                  ></div>
-
-                </div>
-
+                <div class="bar dark"></div><div class="bar"></div><div class="bar short"></div>
+                <div class="stats"><div class="stat"></div><div class="stat"></div><div class="stat"></div></div>
+                <div class="panel"><div class="bar" style="background:#6f87d9;width:35%"></div><div class="bar"></div><div class="bar short"></div></div>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </article>
 
-
-
-      <!-- =====================================
-           PROJECT 02
-      ====================================== -->
-
       <article class="project reveal">
-
         <div class="project-grid">
-
-
           <div class="project-content">
-
             <div>
-
-              <div class="project-index">
-
-                CASE STUDY 02
-
-              </div>
-
-
-              <h3>
-
-                ATM Transaction
-                Anomaly Detection
-
-              </h3>
-
-
-              <p class="project-description">
-
-                針對 ATM 交易資料建立異常交易樣態，
-                從交易頻率、金額、時間、地點與行為變化等面向進行判斷，
-                並透過樣本帳戶進行規則驗證與門檻調整。
-
-              </p>
-
-
-              <div class="tags">
-
-                <span class="tag">
-                  Data Analysis
-                </span>
-
-                <span class="tag">
-                  Risk Detection
-                </span>
-
-                <span class="tag">
-                  Validation
-                </span>
-
-                <span class="tag">
-                  Rule Design
-                </span>
-
-              </div>
-
+              <div class="eyebrow">CASE STUDY 02</div>
+              <h3>ATM Transaction Anomaly Detection</h3>
+              <p>建立 13 種 ATM 交易異常樣態，從頻率、金額、時間、地點與行為變化進行風險識別，並以抽樣帳戶驗證規則與門檻設定。</p>
+              <div class="tags"><span class="tag">Data Analysis</span><span class="tag">Risk Detection</span><span class="tag">Validation</span><span class="tag">Rule Design</span></div>
             </div>
-
-
-            <a
-              href="#atm-metrics"
-              class="project-link"
-            >
-
-              View validation
-
-              <span>
-                →
-              </span>
-
-            </a>
-
+            <button class="linkbtn" data-case="atm">View full case study <span>→</span></button>
           </div>
-
-
-
-          <div
-            class="
-              project-visual
-              visual-atm
-            "
-          >
-
-            <div class="mock-window">
-
-              <div class="mock-top">
-
-                <div class="mock-dot"></div>
-
-                <div class="mock-dot"></div>
-
-                <div class="mock-dot"></div>
-
-              </div>
-
-
+          <div class="visual green">
+            <div class="mock">
+              <div class="mock-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="mock-body">
-
-                <div class="mock-title"></div>
-
-                <div class="mock-line short"></div>
-
-
-                <div
-                  style="
-                    margin-top:25px;
-                    height:140px;
-                    display:flex;
-                    align-items:flex-end;
-                    gap:8px;
-                  "
-                >
-
-                  <div style="
-                    width:12%;
-                    height:35%;
-                    background:#cddfd6;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
-                  <div style="
-                    width:12%;
-                    height:55%;
-                    background:#cddfd6;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
-                  <div style="
-                    width:12%;
-                    height:42%;
-                    background:#cddfd6;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
-                  <div style="
-                    width:12%;
-                    height:90%;
-                    background:#659b80;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
-                  <div style="
-                    width:12%;
-                    height:48%;
-                    background:#cddfd6;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
-                  <div style="
-                    width:12%;
-                    height:63%;
-                    background:#cddfd6;
-                    border-radius:4px 4px 0 0;
-                  "></div>
-
+                <div class="bar dark"></div><div class="bar short"></div>
+                <div style="height:145px;margin-top:22px;display:flex;align-items:flex-end;gap:8px">
+                  <div style="width:12%;height:30%;background:#c9ded4;border-radius:4px 4px 0 0"></div>
+                  <div style="width:12%;height:52%;background:#c9ded4;border-radius:4px 4px 0 0"></div>
+                  <div style="width:12%;height:44%;background:#c9ded4;border-radius:4px 4px 0 0"></div>
+                  <div style="width:12%;height:92%;background:#60977c;border-radius:4px 4px 0 0"></div>
+                  <div style="width:12%;height:50%;background:#c9ded4;border-radius:4px 4px 0 0"></div>
+                  <div style="width:12%;height:66%;background:#c9ded4;border-radius:4px 4px 0 0"></div>
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
-
-
-        <div
-          class="metrics"
-          id="atm-metrics"
-        >
-
-          <div class="metric">
-
-            <div class="metric-value">
-              13
-            </div>
-
-            <div class="metric-label">
-              Transaction patterns
-              designed for validation
-            </div>
-
-          </div>
-
-
-          <div class="metric">
-
-            <div class="metric-value">
-              6
-            </div>
-
-            <div class="metric-label">
-              Sample accounts used
-              in initial validation
-            </div>
-
-          </div>
-
-
-          <div class="metric">
-
-            <div class="metric-value">
-              83.3%
-            </div>
-
-            <div class="metric-label">
-              Sample agreement rate
-              (5 of 6 accounts)
-            </div>
-
-          </div>
-
+        <div class="metrics">
+          <div class="metric"><strong>13</strong><span>異常交易樣態</span></div>
+          <div class="metric"><strong>6</strong><span>初步抽樣帳戶</span></div>
+          <div class="metric"><strong>83.3%</strong><span>本次樣本判定一致率（5/6）</span></div>
         </div>
-
       </article>
-
-
-
-      <!-- =====================================
-           PROJECT 03
-      ====================================== -->
 
       <article class="project reveal">
-
         <div class="project-grid">
-
-
           <div class="project-content">
-
             <div>
-
-              <div class="project-index">
-
-                CASE STUDY 03
-
-              </div>
-
-
-              <h3>
-
-                Electronic
-                Check Platform
-
-              </h3>
-
-
-              <p class="project-description">
-
-                規劃電子支票分行與總行作業平台，
-                將不同業務情境轉換成任務導向操作流程，
-                涵蓋電子支票查詢、背書轉讓、退回、
-                融資與作廢等功能。
-
-              </p>
-
-
-              <div class="tags">
-
-                <span class="tag">
-                  Financial System
-                </span>
-
-                <span class="tag">
-                  User Flow
-                </span>
-
-                <span class="tag">
-                  Requirement Analysis
-                </span>
-
-                <span class="tag">
-                  System Planning
-                </span>
-
-              </div>
-
+              <div class="eyebrow">CASE STUDY 03</div>
+              <h3>Electronic Check Platform</h3>
+              <p>規劃電子支票分行／總行平台，以任務導向設計查詢、背書轉讓、退回、融資與作廢等操作流程，並整理角色、權限與情境式需求。</p>
+              <div class="tags"><span class="tag">Financial System</span><span class="tag">User Flow</span><span class="tag">Requirement Analysis</span><span class="tag">System Planning</span></div>
             </div>
-
-
-            <div class="project-link">
-
-              Case study coming soon
-
-              <span>
-                →
-              </span>
-
-            </div>
-
+            <button class="linkbtn" data-case="echeck">View full case study <span>→</span></button>
           </div>
-
-
-
-          <div
-            class="
-              project-visual
-              visual-check
-            "
-          >
-
-            <div
-              style="
-                width:100%;
-                max-width:410px;
-              "
-            >
-
-              <div
-                style="
-                  text-align:center;
-                  font-size:13px;
-                  margin-bottom:20px;
-                  color:#777;
-                "
-              >
-                Electronic Check
-              </div>
-
-
-              <div
-                style="
-                  display:flex;
-                  justify-content:center;
-                "
-              >
-
-                <div
-                  style="
-                    padding:14px 20px;
-                    background:white;
-                    border:1px solid #ddd;
-                    border-radius:9px;
-                    font-size:13px;
-                  "
-                >
-                  Search Check
-                </div>
-
-              </div>
-
-
-              <div
-                style="
-                  width:1px;
-                  height:30px;
-                  background:#c8c1b6;
-                  margin:auto;
-                "
-              ></div>
-
-
-              <div
-                style="
-                  display:grid;
-                  grid-template-columns:repeat(2,1fr);
-                  gap:10px;
-                "
-              >
-
-                <div class="focus-item">
-                  Endorsement
-                </div>
-
-                <div class="focus-item">
-                  Return
-                </div>
-
-                <div class="focus-item">
-                  Financing
-                </div>
-
-                <div class="focus-item">
-                  Cancellation
-                </div>
-
-              </div>
-
+          <div class="visual sand">
+            <div>
+              <div class="flow"><div class="node">Search Check</div></div>
+              <div style="height:24px;width:1px;background:#c6b9a8;margin:auto"></div>
+              <div class="flow"><div class="node">Endorsement</div><div class="node">Return</div><div class="node">Financing</div><div class="node">Cancellation</div></div>
             </div>
-
           </div>
-
         </div>
-
       </article>
-
-
-
-      <!-- =====================================
-           PROJECT 04
-      ====================================== -->
 
       <article class="project reveal">
-
         <div class="project-grid">
-
-
           <div class="project-content">
-
             <div>
-
-              <div class="project-index">
-
-                CASE STUDY 04
-
-              </div>
-
-
-              <h3>
-
-                ACH Process
-                Automation
-
-              </h3>
-
-
-              <p class="project-description">
-
-                重新設計公用事業費 ACH 臨櫃申請與檔案交換流程，
-                將多張申請表整併，
-                並將每日人工檔案提出與提回作業改為系統排程自動執行。
-
-              </p>
-
-
-              <div class="tags">
-
-                <span class="tag">
-                  Process Improvement
-                </span>
-
-                <span class="tag">
-                  Automation
-                </span>
-
-                <span class="tag">
-                  Operations
-                </span>
-
-              </div>
-
+              <div class="eyebrow">CASE STUDY 04</div>
+              <h3>ACH Process Automation</h3>
+              <p>將多張臨櫃申請表整併為單一表單，並將每日人工上傳／提回 ACH 與 DDA 檔案改為系統排程自動化，降低重複性操作。</p>
+              <div class="tags"><span class="tag">Process Improvement</span><span class="tag">Automation</span><span class="tag">Operations</span><span class="tag">Workflow Reengineering</span></div>
             </div>
-
-
-            <div class="project-link">
-
-              Case study coming soon
-
-              <span>
-                →
-              </span>
-
-            </div>
-
+            <button class="linkbtn" data-case="ach">View full case study <span>→</span></button>
           </div>
-
-
-
-          <div
-            class="
-              project-visual
-              visual-ach
-            "
-          >
-
-            <div
-              style="
-                width:100%;
-                max-width:400px;
-              "
-            >
-
-              <div
-                style="
-                  display:grid;
-                  grid-template-columns:1fr auto 1fr;
-                  align-items:center;
-                  gap:20px;
-                "
-              >
-
-                <div>
-
-                  <div
-                    style="
-                      font-size:11px;
-                      color:#888;
-                      margin-bottom:12px;
-                    "
-                  >
-                    BEFORE
-                  </div>
-
-                  <div
-                    class="focus-item"
-                    style="margin-bottom:8px;"
-                  >
-                    Form 01
-                  </div>
-
-                  <div
-                    class="focus-item"
-                    style="margin-bottom:8px;"
-                  >
-                    Form 02
-                  </div>
-
-                  <div class="focus-item">
-                    Form 03
-                  </div>
-
-                </div>
-
-
-                <div
-                  style="
-                    font-size:22px;
-                    color:#aaa;
-                  "
-                >
-                  →
-                </div>
-
-
-                <div>
-
-                  <div
-                    style="
-                      font-size:11px;
-                      color:#888;
-                      margin-bottom:12px;
-                    "
-                  >
-                    AFTER
-                  </div>
-
-                  <div
-                    style="
-                      padding:35px 18px;
-                      background:white;
-                      border:1px solid #ddd;
-                      border-radius:10px;
-                      text-align:center;
-                      font-size:13px;
-                    "
-                  >
-                    Integrated
-                    ACH Form
-                  </div>
-
-                </div>
-
-              </div>
-
+          <div class="visual purple">
+            <div class="flow">
+              <div><div style="font-size:11px;color:#8d929a;margin-bottom:8px">BEFORE</div><div class="node">Form 01</div><div class="node" style="margin-top:7px">Form 02</div><div class="node" style="margin-top:7px">Form 03</div></div>
+              <div class="arrow">→</div>
+              <div><div style="font-size:11px;color:#8d929a;margin-bottom:8px">AFTER</div><div class="node" style="padding:32px 18px">Integrated ACH Form</div></div>
             </div>
-
           </div>
-
         </div>
-
       </article>
-
-
     </div>
-
   </div>
-
 </section>
-
-
-
-<!-- =========================================
-     LABS
-========================================== -->
 
 <section id="labs">
-
   <div class="container">
-
-
-    <div class="section-header reveal">
-
-      <div class="section-number">
-
-        02 / Labs
-
-      </div>
-
-
-      <div>
-
-        <h2>
-
-          Building beyond
-          day-to-day projects.
-
-        </h2>
-
-        <p>
-
-          透過自主研究、PoC 與競賽題目，
-          持續實際驗證 AI、資料與數位產品的應用可能性。
-
-        </p>
-
-      </div>
-
+    <div class="section-head reveal">
+      <div class="section-no">02 / Labs & Explorations</div>
+      <div><h2>Hands-on AI, data and innovation work.</h2><p>這些專案用來展示技術理解、PoC 能力與跨領域產品思考，不以「概念」停留，而是盡可能做到可 Demo、可驗證。</p></div>
     </div>
-
-
-
-    <div class="labs-grid">
-
-
-      <article class="lab reveal">
-
-        <div class="lab-number">
-          LAB 01
-        </div>
-
-        <div>
-
-          <h3>
-            Local RAG
-            Knowledge Base
-          </h3>
-
-          <p>
-
-            使用 Python、Ollama 與本地文件建立
-            RAG 知識庫，實際處理 PDF Parsing、
-            Chunking、Retrieval 與 LLM 問答流程。
-
-          </p>
-
-        </div>
-
+    <div class="cards">
+      <article class="card reveal">
+        <small>LAB 01</small>
+        <div><h3>Local RAG Knowledge Base</h3><p>使用 Python、Ollama 與本地 PDF 建立 RAG 流程，實作 Parsing、Chunking、Retrieval 與 LLM 問答。</p></div>
+        <button class="linkbtn" data-case="rag">View details <span>→</span></button>
       </article>
-
-
-
-      <article class="lab reveal">
-
-        <div class="lab-number">
-          LAB 02
-        </div>
-
-        <div>
-
-          <h3>
-            Railway
-            Safety AI
-          </h3>
-
-          <p>
-
-            以公開交通資料與 AI 為核心，
-            探索鐵路安全風險分析、
-            現場決策與 Prototype 應用。
-
-          </p>
-
-        </div>
-
+      <article class="card reveal">
+        <small>LAB 02</small>
+        <div><h3>Railway Safety AI</h3><p>以公開資料、AI 與 Web Prototype 為核心，探索鐵路安全事件與列車設備風險分析。</p></div>
+        <button class="linkbtn" data-case="rail">View details <span>→</span></button>
       </article>
-
-
-
-      <article class="lab reveal">
-
-        <div class="lab-number">
-          LAB 03
-        </div>
-
-        <div>
-
-          <h3>
-            Digital Trust &
-            Anti-Fraud
-          </h3>
-
-          <p>
-
-            探索數位簽章、企業識別、
-            防詐驗證與可信任資訊交換的產品機制。
-
-          </p>
-
-        </div>
-
+      <article class="card reveal">
+        <small>LAB 03</small>
+        <div><h3>Medical Radiation Shield Concept</h3><p>聚焦影像導引醫療與懸吊式防護屏，探索材料、AI 輔助顯示與臨床工作流整合。</p></div>
+        <button class="linkbtn" data-case="medical">View details <span>→</span></button>
       </article>
-
-
+      <article class="card reveal">
+        <small>LAB 04</small>
+        <div><h3>Digital Trust & Anti-Fraud</h3><p>探索企業識別、數位簽章、可信任驗證與防詐機制，思考「ID 被轉傳」後仍能驗證真偽的產品設計。</p></div>
+        <button class="linkbtn" data-case="fraud">View details <span>→</span></button>
+      </article>
     </div>
-
   </div>
-
 </section>
 
-
-
-<!-- =========================================
-     CAPABILITIES
-========================================== -->
-
-<section id="capabilities">
-
+<section id="skills">
   <div class="container">
-
-
-    <div class="section-header reveal">
-
-      <div class="section-number">
-
-        03 / Capabilities
-
-      </div>
-
-
-      <div>
-
-        <h2>
-
-          From business problem
-          to executable product.
-
-        </h2>
-
-        <p>
-
-          我的角色不只停留在需求紀錄，
-          而是將業務、系統、AI 與使用者流程串接，
-          形成可執行的產品方案。
-
-        </p>
-
-      </div>
-
+    <div class="section-head reveal">
+      <div class="section-no">03 / Capabilities</div>
+      <div><h2>From business problem to executable product.</h2><p>我的角色不只紀錄需求，而是把業務、使用者、系統、AI 與驗證方式串接起來。</p></div>
     </div>
 
-
-
-    <div class="capabilities-list">
-
-
-      <div class="capability reveal">
-
-        <div class="capability-number">
-          01
-        </div>
-
-        <h3>
-          Product Design
-        </h3>
-
-        <p>
-
-          Requirement Analysis · User Flow ·
-          Sitemap · Role & Permission ·
-          Prototype Planning
-
-        </p>
-
-      </div>
-
-
-
-      <div class="capability reveal">
-
-        <div class="capability-number">
-          02
-        </div>
-
-        <h3>
-          AI Application
-        </h3>
-
-        <p>
-
-          LLM · RAG · Document AI ·
-          AI-assisted Review ·
-          AI Workflow Design
-
-        </p>
-
-      </div>
-
-
-
-      <div class="capability reveal">
-
-        <div class="capability-number">
-          03
-        </div>
-
-        <h3>
-          FinTech
-        </h3>
-
-        <p>
-
-          Account Opening · Payment · ACH ·
-          Electronic Check ·
-          Transaction Monitoring
-
-        </p>
-
-      </div>
-
-
-
-      <div class="capability reveal">
-
-        <div class="capability-number">
-          04
-        </div>
-
-        <h3>
-          Validation
-        </h3>
-
-        <p>
-
-          Business Rule Design ·
-          Sample Validation ·
-          Threshold Analysis ·
-          Process Improvement
-
-        </p>
-
-      </div>
-
-
-
-      <div class="capability reveal">
-
-        <div class="capability-number">
-          05
-        </div>
-
-        <h3>
-          Project Execution
-        </h3>
-
-        <p>
-
-          Requirement Interview ·
-          Vendor Collaboration ·
-          Documentation · PoC ·
-          Cross-functional Coordination
-
-        </p>
-
-      </div>
-
-
-    </div>
-
+    <div class="skillrow reveal"><div class="num">01</div><h3>Product & Requirement</h3><p>Requirement Analysis · User Flow · Sitemap · Role & Permission · Prototype Planning</p></div>
+    <div class="skillrow reveal"><div class="num">02</div><h3>AI Application</h3><p>LLM · RAG · Document AI · AI-assisted Review · Human-in-the-loop Workflow</p></div>
+    <div class="skillrow reveal"><div class="num">03</div><h3>Financial Domain</h3><p>Account Opening · Payment · ACH · Electronic Check · Transaction Monitoring</p></div>
+    <div class="skillrow reveal"><div class="num">04</div><h3>Data & Validation</h3><p>Business Rule Design · Sample Validation · Threshold Tuning · Exception Analysis</p></div>
+    <div class="skillrow reveal"><div class="num">05</div><h3>Project Execution</h3><p>Requirement Interview · Vendor Collaboration · Documentation · PoC · Cross-functional Coordination</p></div>
   </div>
-
 </section>
-
-
-
-<!-- =========================================
-     ABOUT
-========================================== -->
 
 <section id="about">
-
-  <div class="container">
-
-
-    <div class="about-grid">
-
-
-      <div class="reveal">
-
-        <div class="section-number"
-             style="margin-bottom:25px;">
-
-          04 / About Me
-
-        </div>
-
-
-        <h2 class="about-title">
-
-          Complex business
-          doesn't need
-          complex products.
-
-        </h2>
-
-      </div>
-
-
-
-      <div class="about-content reveal">
-
-        <p>
-
-          我的工作核心是理解複雜的金融業務流程，
-          找出真正需要解決的問題，
-          並將需求轉換成系統功能、操作流程與產品設計。
-
-        </p>
-
-
-        <p>
-
-          在 AI 專案中，我特別重視 AI 與實際作業流程的整合。
-          AI 不應只是展示模型能力，
-          而是必須知道在哪一個環節介入、
-          提供什麼資訊，以及最後由誰做決策。
-
-        </p>
-
-
-        <p>
-
-          除了金融專案，我也持續透過 RAG、
-          AI Prototype 與創新競賽實際驗證新的產品與技術概念。
-
-        </p>
-
-
-
-        <div class="about-focus">
-
-          <div class="focus-item">
-            Business → Requirement
-          </div>
-
-          <div class="focus-item">
-            Requirement → Workflow
-          </div>
-
-          <div class="focus-item">
-            Workflow → Product
-          </div>
-
-          <div class="focus-item">
-            Product → Validation
-          </div>
-
-        </div>
-
-      </div>
-
+  <div class="container about">
+    <div class="reveal">
+      <div class="section-no" style="margin-bottom:22px">04 / About Me</div>
+      <h2>Complex business doesn't need complex products.</h2>
     </div>
-
+    <div class="copy reveal">
+      <p>我的工作核心是理解複雜金融業務流程，找出真正需要被改善的環節，再把它轉換成系統功能、操作流程、規則設計與產品介面。</p>
+      <p>在 AI 專案中，我特別重視「AI 在哪一個流程點介入、輸出什麼、誰負責最終決策」，避免把 AI 當成獨立展示，而是讓它真正成為作業流程的一部分。</p>
+      <p>除了金融專案，我也持續透過自主 PoC、RAG、競賽題目與 Web Prototype 驗證新的產品與技術概念。</p>
+      <div class="focus"><div>Business → Requirement</div><div>Requirement → Workflow</div><div>Workflow → Product</div><div>Product → Validation</div></div>
+    </div>
   </div>
-
 </section>
 
-
-
-<!-- =========================================
-     CONTACT
-========================================== -->
-
-<section
-  class="cta"
-  id="contact"
->
-
-  <div class="container">
-
-    <div class="cta-inner reveal">
-
-      <h2>
-
-        Let's build something
-        practical.
-
-      </h2>
-
-
-      <p>
-
-        如果你正在尋找具備金融 Domain、
-        AI 應用與數位產品規劃經驗的 Product Manager，
-        歡迎與我聯繫。
-
-      </p>
-
-
-      <div class="cta-actions">
-
-        <!--
-        把下面信箱換成你的信箱
-        -->
-
-        <a
-          href="mailto:YOUR_EMAIL@example.com"
-          class="btn btn-primary"
-        >
-          Email Me
-        </a>
-
-
-        <!--
-        把 # 換成你的 LinkedIn 網址
-        -->
-
-        <a
-          href="#"
-          class="btn btn-secondary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-
-      </div>
-
+<section id="contact" class="cta">
+  <div class="container reveal">
+    <h2>Let's build something practical.</h2>
+    <p>如果你正在尋找具備金融 Domain、AI 應用、流程設計與數位產品規劃經驗的 Product Manager，歡迎與我聯繫。</p>
+    <div class="actions">
+      <a class="btn primary" href="mailto:YOUR_EMAIL@example.com">Email Me</a>
+      <a class="btn secondary" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
-
+    <p style="margin-top:14px;font-size:12px;color:var(--soft)">※ 請把 Email 與 LinkedIn 連結替換成你的正式資料。</p>
   </div>
-
 </section>
-
-
-
-<!-- =========================================
-     FOOTER
-========================================== -->
 
 <footer>
-
-  <div class="container footer-inner">
-
-    <div>
-
-      © <span id="year"></span>
-      Nick.
-      Product Portfolio.
-
-    </div>
-
-
-    <div class="footer-links">
-
-      <a href="#projects">
-        Projects
-      </a>
-
-      <a href="#about">
-        About
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
-
-    </div>
-
+  <div class="container footer">
+    <div>© <span id="year"></span> Nick. Product Portfolio.</div>
+    <div>AI × FinTech × Digital Transformation</div>
   </div>
-
 </footer>
 
-
-
-<!-- =========================================
-     JAVASCRIPT
-========================================== -->
+<!-- CASE STUDY MODAL -->
+<div class="modal" id="caseModal" aria-hidden="true">
+  <div class="modal-shell">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Case Study</div>
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
 <script>
+const cases = {
+  account: {
+    title:"AI-Assisted Corporate Account Opening Review",
+    role:"Product Manager / Requirement Analyst",
+    domain:"FinTech · Account Opening · AI",
+    focus:"Workflow · Risk Review · Human-in-the-loop",
+    summary:"將企業開戶文件、內外部查詢與人工審查流程整合為 AI 輔助審查平台，讓系統先完成資料彙整與風險提示，再由分行或總行進行最終判斷。",
+    challenge:["文件來源分散，人工確認成本高","開戶查核需要跨多個內外部資料來源","分行與總行需要共用一致的案件脈絡","AI 必須輔助人工，而非直接取代審查決策"],
+    decisions:["只有符合指定樣態的案件才送總行，避免總行案件量無限制膨脹","AI 輸出採『摘要＋疑點＋來源』，不直接給最終核准結果","保留分行自決與總行審查兩條路徑","角色權限以分行人員、總行人員兩類為核心"],
+    arch:["文件上傳","資料擷取 / OCR","外部與內部查詢","AI 彙整與風險提示","分行判斷","必要時送總行","審查結果"],
+    contribution:["需求梳理與流程設計","角色／權限設計","AI 介入點定義","案件狀態與查詢邏輯","Prototype 規劃","風險樣態與 Human-in-the-loop 設計"]
+  },
+  atm: {
+    title:"ATM Transaction Anomaly Detection",
+    role:"Product / Rule Design",
+    domain:"Transaction Monitoring · Risk",
+    focus:"Pattern Design · Validation · Threshold Tuning",
+    summary:"針對 ATM 交易帳號建立 13 種異常樣態，從交易頻率、金額、時間、地點、行庫、語系與取消行為等維度判斷異常。",
+    challenge:["異常不是單一規則，而是多種行為樣態的組合","低交易量帳戶容易造成規則觸發失真","驗證結果必須區分『樣本一致率』與『模型整體準確率』"],
+    decisions:["先以規則型樣態建立可解釋基線","抽樣帳戶進行人工比對驗證","針對低交易量帳戶增加最低交易筆數／最低異常筆數等門檻概念","持續擴大樣本與調整各樣態閾值"],
+    arch:["交易資料","13 種樣態判定","帳戶層級彙整","抽樣人工比對","門檻調整","再驗證"],
+    contribution:["異常樣態定義","驗證方式設計","抽樣結果解讀","門檻問題辨識","後續優化建議"],
+    kpis:[["13","異常樣態"],["6","初步抽樣帳戶"],["83.3%","本次樣本判定一致率（5/6）"]]
+  },
+  echeck: {
+    title:"Electronic Check Platform",
+    role:"Project Manager / Requirement Planning",
+    domain:"Financial System · Electronic Check",
+    focus:"Business Flow · Branch / HQ Workflow",
+    summary:"規劃分行與總行使用的電子支票平台，將複雜金融作業整理為行員可理解、可執行的任務導向流程。",
+    challenge:["不同業務情境包含不同前置條件與權限","臨櫃代理需先找到客戶持有之電子支票，才可執行後續操作","分行與總行需要共用一致的案件狀態與操作脈絡"],
+    decisions:["以『查詢持有支票 → 選擇任務』作為臨櫃代理入口","以情境式流程取代單純功能選單","將背書轉讓、退回、融資、作廢等行為拆成獨立流程","保留日後與網銀／行銀客戶入口銜接的設計空間"],
+    arch:["客戶識別","持有支票查詢","選擇處理任務","背書 / 退回 / 融資 / 作廢","確認與送出","狀態追蹤"],
+    contribution:["業務情境拆解","User Flow","Sitemap","角色與權限思考","需求訪談前流程定義","專案啟動前規劃"]
+  },
+  ach: {
+    title:"ACH Process Automation",
+    role:"Process Improvement / PM",
+    domain:"Payment Operations · ACH",
+    focus:"Form Simplification · Automation",
+    summary:"針對 ACH 臨櫃申請與每日檔案交換流程進行流程再造，減少重複填寫與人工提出／提回作業。",
+    challenge:["客戶原需分別填寫多張公用事業費授權書","每日早上人工提出 DDA/ACH 檔案、下午再人工提回結果檔","人工操作增加時間成本與遺漏風險"],
+    decisions:["三張表單整併為單一 ACH 授權書","檔案提出／提回改為每日排程自動執行","量化評估從時間、成本、品質、產出四個維度衡量"],
+    arch:["臨櫃申請","單一整合表單","系統建檔","每日自動提出","自動提回結果","例外處理"],
+    contribution:["As-Is / To-Be 流程整理","表單整併邏輯","自動排程需求","量化評估指標規劃"]
+  },
+  rag: {
+    title:"Local RAG Knowledge Base",
+    role:"Hands-on AI Prototype",
+    domain:"LLM · RAG · Local AI",
+    focus:"PDF Parsing · Chunking · Retrieval",
+    summary:"以本地 PDF 為資料來源，實作從文件讀取、Chunking、向量化、檢索到 LLM 回答的 RAG 流程，並在本機環境測試。",
+    challenge:["PDF 路徑、文字抽取與 Chunking 需要逐步驗證","必須讓模型回答有來源依據，而不是只依賴模型記憶","本地模型與工具整合需要兼顧新手可維護性"],
+    decisions:["先以單一 PDF 驗證端到端流程","逐步調整 Chunk 數量與顯示結果","採本地模型環境降低外部資料傳輸需求","保留後續擴充多文件與引用來源的空間"],
+    arch:["PDF","Parsing","Chunking","Embedding","Vector Store","Retrieval","LLM Answer"],
+    contribution:["環境建置","PDF 讀取驗證","Chunking 調整","RAG 流程理解","本地端 PoC"]
+  },
+  rail: {
+    title:"Railway Safety AI",
+    role:"Competition Project / Product Concept",
+    domain:"Transportation · AI · Open Data",
+    focus:"Public Data · Safety · Web Prototype",
+    summary:"以公開資料可取得性為前提，設計可 Demo 的鐵路智慧安全題目，並延伸至 Web Prototype 與 PoC。",
+    challenge:["競賽題目必須建立在可取得的公開資料上","題目不能只停留在平交道，還需涵蓋列車設備與旅運風險","決賽需要現場 Demo，因此可行性與展示性同樣重要"],
+    decisions:["先做資料可取得性盤點，再定題","題目需同時兼顧安全價值與可 Demo 性","前端 UI 以使用者可理解的風險資訊呈現為主"],
+    arch:["Open Data","Risk Feature","AI / Rule Analysis","Risk Score","Web Dashboard","Demo"],
+    contribution:["題目篩選","資料盤點","PoC 規劃","Web UI 需求","競賽可行性評估"]
+  },
+  medical: {
+    title:"Medical Radiation Shield Concept",
+    role:"Innovation Research / Product Concept",
+    domain:"Healthcare · Materials · AI",
+    focus:"Radiation Protection · Workflow · Display",
+    summary:"聚焦醫療影像導引與懸吊式輻射防護屏，從臨床痛點出發，探索防護材料、視覺資訊疊加與 AI 輔助的產品整合。",
+    challenge:["防護屏必須兼顧 X 光防護與手術操作視野","資訊疊加不能干擾醫療人員動作","產品必須明確說明材料選擇與技術可行性"],
+    decisions:["以臨床文獻關注的手部暴露問題作為痛點核心","避免只用一般螢幕取代產品價值","將材料、防護、影像與 AI 顯示整合成一個完整情境"],
+    arch:["Imaging","Radiation Shield","Material Layer","AI Guidance","Clinical View","Operator Decision"],
+    contribution:["痛點研究","文獻導向題目收斂","產品情境設計","AI 應用定位","提案架構"]
+  },
+  fraud: {
+    title:"Digital Trust & Anti-Fraud",
+    role:"Product Concept",
+    domain:"Identity · Trust · Anti-Fraud",
+    focus:"Verification · Digital Signature · Fraud Resistance",
+    summary:"設計企業可信任驗證機制，思考即使詐騙者取得企業 ID，也不能只靠轉傳 ID 冒充真實企業。",
+    challenge:["靜態 ID 一旦外流就可能被複製轉傳","消費者需要能快速判斷來源與內容是否真實","驗證機制不能只依賴單一字串"],
+    decisions:["ID 僅作索引，不作最終信任憑證","每次驗證搭配動態簽章、時效性資訊或交易上下文","消費者驗證時顯示企業身分與簽章狀態","將可信任來源與防重放機制納入產品設計"],
+    arch:["Enterprise Identity","Signed Token","Context / Expiry","Consumer Verify","Signature Check","Trusted Result"],
+    contribution:["問題定義","威脅模型思考","驗證流程設計","產品可行性分析"]
+  }
+};
 
-  /* =========================================
-     CURRENT YEAR
-  ========================================== */
+function renderCase(c){
+  const challenges = c.challenge.map(x=>`<li>${x}</li>`).join("");
+  const decisions = c.decisions.map(x=>`<li>${x}</li>`).join("");
+  const contrib = c.contribution.map(x=>`<li>${x}</li>`).join("");
+  const arch = c.arch.map((x,i)=>`<div class="arch-node">${x}</div>${i<c.arch.length-1?'<div class="arrow">→</div>':''}`).join("");
+  const kpis = c.kpis ? `<div class="kpi">${c.kpis.map(k=>`<div><strong>${k[0]}</strong><span>${k[1]}</span></div>`).join("")}</div>` : "";
+  return `
+    <div class="case-hero">
+      <div>
+        <div class="eyebrow">CASE STUDY</div>
+        <h2>${c.title}</h2>
+        <p>${c.summary}</p>
+      </div>
+      <div class="case-meta">
+        <div><span>Role</span><strong>${c.role}</strong></div>
+        <div><span>Domain</span><strong>${c.domain}</strong></div>
+        <div><span>Focus</span><strong>${c.focus}</strong></div>
+      </div>
+    </div>
 
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
+    <div class="case-section">
+      <h3>Challenge</h3>
+      <div class="two-col">
+        <div class="case-box"><h4>What needed to be solved</h4><ul>${challenges}</ul></div>
+        <div class="case-box"><h4>Product / Design decisions</h4><ul>${decisions}</ul></div>
+      </div>
+    </div>
 
+    <div class="case-section">
+      <h3>Proposed Flow</h3>
+      <p>以下以公開作品集可揭露的層級，呈現主要流程與設計邏輯。</p>
+      <div class="arch"><div class="arch-row">${arch}</div></div>
+      ${kpis}
+    </div>
 
+    <div class="case-section">
+      <h3>My Contribution</h3>
+      <div class="case-box"><ul>${contrib}</ul></div>
+      <div class="note">公開版本已去除內部系統名稱、客戶資料、帳號、實際風險參數與其他可能涉及機敏資訊的內容。</div>
+    </div>
+  `;
+}
 
-  /* =========================================
-     SCROLL REVEAL
-  ========================================== */
+const modal=document.getElementById("caseModal");
+const modalTitle=document.getElementById("modalTitle");
+const modalBody=document.getElementById("modalBody");
+document.querySelectorAll("[data-case]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const c=cases[btn.dataset.case];
+    if(!c)return;
+    modalTitle.textContent=c.title;
+    modalBody.innerHTML=renderCase(c);
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  });
+});
+function closeModal(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+document.getElementById("closeModal").addEventListener("click",closeModal);
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 
-  const observer =
-    new IntersectionObserver(
+document.getElementById("year").textContent=new Date().getFullYear();
 
-      (entries) => {
-
-        entries.forEach(
-          (entry) => {
-
-            if (entry.isIntersecting) {
-
-              entry.target
-                .classList
-                .add("visible");
-
-              observer
-                .unobserve(
-                  entry.target
-                );
-
-            }
-
-          }
-        );
-
-      },
-
-      {
-
-        threshold: 0.12
-
-      }
-
-    );
-
-
-  document
-    .querySelectorAll(".reveal")
-    .forEach(
-
-      (element) => {
-
-        observer.observe(element);
-
-      }
-
-    );
-
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}
+  })
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 </script>
-
-
 </body>
-</html>
+</html>'''
+
+path = Path("/mnt/data/index.html")
+path.write_text(html, encoding="utf-8")
+
+# Also make a zip containing just the site file for convenience
+import zipfile
+zip_path = Path("/mnt/data/nick-portfolio-complete.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    z.write(path, arcname="index.html")
+
+print(f"Created {path}")
+print(f"Created {zip_path}")
